@@ -1,12 +1,12 @@
-package edu.softserve;
+package com.softserve.edu;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 /**
- * 561. Дано натуральное число n. Среди чисел 1, ..., n найти все
- * такие, запись которых совпадает с последними цифрами записи их
- * квадрата (как, например, 6**2  = 36, 25**2 = 625 и т. д.).
+ * Class gets natural number from command line and prints all numbers
+ * from 1 to number, which digits are included as last digits
+ * of number pow to square.
  */
 public final class SpecificNumbersFinder {
 
@@ -17,7 +17,7 @@ public final class SpecificNumbersFinder {
     }
 
     /**
-     * Method checks if the number matches the last digits
+     * Method checks if the number matches the last digits.
      * of the number multiplied to number (n*n).
      * @param number integer
      * @return boolean
@@ -30,11 +30,14 @@ public final class SpecificNumbersFinder {
     }
 
     /**
+     * Method returns array of numbers, which digits are included as last digits
+     * of number pow to square.
      * @param number integer
-     * @return true or false
+     * @return array of numbers, which digits are included as last digits
+     * of number pow to square
      */
     private static ArrayList getSpecificNumbers(final int number) {
-        ArrayList<Integer> myArr = new ArrayList();
+        ArrayList<Integer> myArr = new ArrayList<>();
         for (int i = 1; i < number; i++) {
             if (isNumberIncludedInPow(i)) {
                 myArr.add(i);
