@@ -13,8 +13,7 @@ public class DataInput {
      */
     public int getIntegerFromCommandLine() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter the natural number");
-        int number = input.nextInt();
-        return number;
+        System.out.println("Enter the natural number: ");
+        return input.nextInt();
     }
 }
