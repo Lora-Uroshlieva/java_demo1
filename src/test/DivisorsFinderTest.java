@@ -52,16 +52,19 @@ public class DivisorsFinderTest {
 
     }
 
-
     @Test(dataProvider = "testDataGetNaturalDivisors")
-    public void testGetNaturalDivisors(int number, ArrayList<Integer> expected) {
-        ArrayList<Integer> actual = new DivisorsFinder().getNaturalDivisors(number);
+    public void testGetNaturalDivisors(int number,
+                                       ArrayList<Integer> expected) {
+        ArrayList<Integer> actual = new DivisorsFinder()
+                .getNaturalDivisors(number);
         Assert.assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "testDataGetSimpleDivisors")
-    public void testGetSimpleDivisors(int number, ArrayList<Integer> expected) {
-        ArrayList<Integer> actual = new DivisorsFinder().getSimpleDivisors(number);
+    public void testGetSimpleDivisors(int number,
+                                      ArrayList<Integer> expected) {
+        ArrayList<Integer> actual = new DivisorsFinder()
+                .getSimpleDivisors(number);
         Assert.assertEquals(actual, expected);
     }
 }
