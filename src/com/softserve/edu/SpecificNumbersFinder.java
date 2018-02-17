@@ -7,7 +7,6 @@ import java.util.ArrayList;
  * and returns array of numbers which digits are included
  * as the last digits of the number squared.
  */
-@SuppressWarnings("WeakerAccess")
 public final class SpecificNumbersFinder {
 
     /**
