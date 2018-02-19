@@ -1,6 +1,7 @@
 package com.softserve.edu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *Task 224. We get natural number from command line
@@ -20,7 +21,7 @@ public final class Task224Runner {
      */
     public static void main(final String[] args) {
         int number = new DataInput().getIntegerFromCommandLine();
-        ArrayList<Integer> divisors = new DivisorsFinder()
+        List<Integer> divisors = new DivisorsFinder()
                 .getNaturalDivisors(number);
         System.out.println("All natural divisors of number "
                 + number + ": " + divisors);

@@ -55,7 +55,7 @@ public class DivisorsFinderTest {
     @Test(dataProvider = "testDataGetNaturalDivisors")
     public void testGetNaturalDivisors(int number,
                                        ArrayList<Integer> expected) {
-        ArrayList<Integer> actual = new DivisorsFinder()
+        List<Integer> actual = new DivisorsFinder()
                 .getNaturalDivisors(number);
         Assert.assertEquals(actual, expected);
     }
@@ -63,7 +63,7 @@ public class DivisorsFinderTest {
     @Test(dataProvider = "testDataGetSimpleDivisors")
     public void testGetSimpleDivisors(int number,
                                       ArrayList<Integer> expected) {
-        ArrayList<Integer> actual = new DivisorsFinder()
+        List<Integer> actual = new DivisorsFinder()
                 .getSimpleDivisors(number);
         Assert.assertEquals(actual, expected);
     }

@@ -1,6 +1,7 @@
 package com.softserve.edu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class deals with different types of divisors of  number given
@@ -20,8 +21,8 @@ public final class DivisorsFinder {
      * @return array of number's natural divisors
      * (division is done without modulo )
      */
-    public ArrayList<Integer> getNaturalDivisors(final int number) {
-        ArrayList<Integer> divisors = new ArrayList<>();
+    public List<Integer> getNaturalDivisors(final int number) {
+        List<Integer> divisors = new ArrayList<>();
         for (int i = 1; i <= number; i++) {
             if (number % i == 0) {
                 divisors.add(i);
@@ -31,11 +32,11 @@ public final class DivisorsFinder {
     }
 
     /**
-     * @param number integer number
+     * @param number -  integer number
      * @return array of simple divisors
      */
-    public ArrayList<Integer> getSimpleDivisors(final int number) {
-        ArrayList<Integer> divisors = new ArrayList<>();
+    public List<Integer> getSimpleDivisors(final int number) {
+        List<Integer> divisors = new ArrayList<>();
         for (int i = 1; i < number; i++) {
             if ((number % i == 0)
                     && (new NumberChecker().isSimpleNumber(i))) {

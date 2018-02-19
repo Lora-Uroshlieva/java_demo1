@@ -9,16 +9,15 @@ import java.util.List;
 public class SpecificNumbersFinderTest {
     @DataProvider
     public Object[][] testDataGetSpecificNumbers() {
-        List expected = new ArrayList<Integer>() {{
-            add(1);
-            add(5);
-            add(6);
-            add(25);
-            add(76);
-            add(376);
-            add(625);
-            add(9376);
-        }};
+        List<Long> expected = new ArrayList<>();
+        expected.add(1L);
+        expected.add(5L);
+        expected.add(6L);
+        expected.add(25L);
+        expected.add(76L);
+        expected.add(376L);
+        expected.add(625L);
+        expected.add(9376L);
         return new Object[][] {{10000, expected}};
     }
 

@@ -1,6 +1,7 @@
 package com.softserve.edu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class gets natural number,
@@ -23,9 +24,9 @@ public final class SpecificNumbersFinder {
      * @return array of numbers, which digits are included as last digits
      * of number squared.
      */
-    public ArrayList<Integer> getSpecificNumbers(final int number) {
-        ArrayList<Integer> myArr = new ArrayList<>();
-        for (int i = 1; i < number; i++) {
+    public List<Long> getSpecificNumbers(final long number) {
+        List<Long> myArr = new ArrayList<>();
+        for (long i = 1; i < number; i++) {
             if (new NumberChecker().isNumberIncludedInSquaredNumber(i)) {
                 myArr.add(i);
             }

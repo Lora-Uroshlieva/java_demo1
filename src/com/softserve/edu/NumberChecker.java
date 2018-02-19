@@ -26,8 +26,8 @@ public class NumberChecker {
      * @param number integer
      * @return boolean
      */
-    public boolean isNumberIncludedInSquaredNumber(final int number) {
-        int pow = number * number;
+    public boolean isNumberIncludedInSquaredNumber(final long number) {
+        long pow = number * number;
         String numberToString = String.valueOf(number);
         String powToString = String.valueOf(pow);
         return powToString.endsWith(numberToString);

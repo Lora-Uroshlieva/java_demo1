@@ -1,6 +1,7 @@
 package com.softserve.edu;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Task 561.
@@ -18,12 +19,11 @@ public final class Task561Runner {
      * @param args string input from command line
      */
     public static void main(final String[] args) {
-        int number = new DataInput().getIntegerFromCommandLine();
-        ArrayList<Integer> numbers = new SpecificNumbersFinder()
+        long number = new DataInput().getLongFromCommandLine();
+        List<Long> numbers = new SpecificNumbersFinder()
                 .getSpecificNumbers(number);
         System.out.println("All numbers which digits are included "
                 + "at the end of number squared in range from 1 to  "
                 + number + " are: " + numbers);
-//        System.out.println(87231*87231);
     }
 }
