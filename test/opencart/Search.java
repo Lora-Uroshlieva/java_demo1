@@ -15,11 +15,11 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Search {
-    private WebDriver driver;
-    private final String URL = "http://opencartt.rf.gd/";
+    private final String URL = "http://opencartt.rf.gd";
     private final String SEARCH_INPUT_LOCATOR = "input.form-control.input-lg";
     private final String SEARCH_BUTTON_LOCATOR = ".btn.btn-default.btn-lg";
 
+    private WebDriver driver;
 
     @BeforeClass
     public  void beforeClass() {
@@ -47,7 +47,7 @@ public class Search {
         driver.findElement(By.cssSelector(SEARCH_BUTTON_LOCATOR)).click();
 
         String actualUrl = driver.getCurrentUrl();
-        String expectedUrl = "http://opencartt.rf.gd/index.php?route=product/search&search=Apple%20Cinema";
+        String expectedUrl = URL + "/index.php?route=product/search&search=Apple%20Cinema";
         Assert.assertEquals(actualUrl, expectedUrl);
 
         String actualProductName = driver.findElement(By.partialLinkText("Apple Cinema")).getText();

@@ -15,7 +15,7 @@ public class Helper {
         this.driver = driver;
     }
 
-    public List getProductsNames() {
+    public List<String> getProductsNames() {
         List<String> names = new ArrayList<>();
         List<WebElement> namesElements = driver.findElements(By.cssSelector("div.product-thumb div.caption a"));
         for (int i = 0; i<namesElements.size(); i++) {
