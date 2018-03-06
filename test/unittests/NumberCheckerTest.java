@@ -1,3 +1,5 @@
+package unittests;
+
 import com.softserve.edu.NumberChecker;
 
 import org.testng.Assert;

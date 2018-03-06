@@ -4,9 +4,9 @@
 
     <test name="Regression">
         <classes>
-            <class name="DivisorsFinderTest" />
-            <class name="NumberCheckerTest" />
-            <class name="SpecificNumbersFinderTest" />
+            <class name="unittests.DivisorsFinderTest" />
+            <class name="unittests.NumberCheckerTest" />
+            <class name="unittests.SpecificNumbersFinderTest" />
         </classes>
     </test>
 

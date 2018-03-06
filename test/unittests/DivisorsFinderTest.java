@@ -1,3 +1,5 @@
+package unittests;
+
 import com.softserve.edu.DivisorsFinder;
 
 import org.testng.Assert;

@@ -1,3 +1,5 @@
+package unittests;
+
 import com.softserve.edu.SpecificNumbersFinder;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
