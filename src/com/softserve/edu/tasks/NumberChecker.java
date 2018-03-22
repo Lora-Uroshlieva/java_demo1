@@ -1,4 +1,4 @@
-package com.softserve.edu;
+package com.softserve.edu.tasks;
 
 /**
  * Class deals with checking if number satisfies specific criteria.

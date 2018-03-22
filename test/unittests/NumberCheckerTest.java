@@ -1,4 +1,6 @@
-import com.softserve.edu.NumberChecker;
+package unittests;
+
+import com.softserve.edu.tasks.NumberChecker;
 
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;

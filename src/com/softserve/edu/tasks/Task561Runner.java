@@ -1,6 +1,5 @@
-package com.softserve.edu;
+package com.softserve.edu.tasks;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

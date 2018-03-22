@@ -1,6 +1,6 @@
 package opencart;
 
-import opencart.util.Helper;
+import com.opencart.pages.utils.REWRITE_Helper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -57,7 +57,7 @@ public class Search {
 
     @Test
     public void testSearchMultipleProducts() {
-        Helper helper = new Helper(driver);
+        REWRITE_Helper REWRITEHelper = new REWRITE_Helper(driver);
 
         driver.get(URL);
         WebElement input = driver.findElement(By.cssSelector(SEARCH_INPUT_LOCATOR));
@@ -65,7 +65,7 @@ public class Search {
         input.sendKeys("Mac");
         driver.findElement(By.cssSelector(SEARCH_BUTTON_LOCATOR)).click(); //search by keyword is done
 
-        List<String> productsList = helper.getProductsNames();
-        Assert.assertTrue(helper.checkProductsList(productsList, "Mac"));
+        List<String> productsList = REWRITEHelper.getProductsNames();
+        Assert.assertTrue(REWRITEHelper.checkProductsList(productsList, "Mac"));
     }
 }

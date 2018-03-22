@@ -1,4 +1,6 @@
-import com.softserve.edu.DivisorsFinder;
+package unittests;
+
+import com.softserve.edu.tasks.DivisorsFinder;
 
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
