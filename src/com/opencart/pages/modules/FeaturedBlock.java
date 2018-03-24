@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FeaturedBlock extends ConciseAPI {
-    protected WebDriver driver;
     private List<ProductComponent> productComponents;
     private final String PRODUCT_LAYOUT_BY_CSS = ".product-layout";
 
@@ -53,6 +52,15 @@ public class FeaturedBlock extends ConciseAPI {
 
     public Double getPriceAmountByProductName(String productName) {
         return getProductComponentByName(productName).getPriceAmount();
+    }
+
+    public List<Double> getAllProductsPricesAmounts() {
+        List<ProductComponent> products = getProductComponents();
+        List<Double> prices = new ArrayList<>();
+        for (ProductComponent current: products) {
+            prices.add(current.getPriceAmount());
+        }
+        return prices;
     }
 
     public void clickAddToCartByProductName(String productName) {

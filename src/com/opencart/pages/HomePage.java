@@ -1,33 +1,57 @@
 package com.opencart.pages;
 
+import com.opencart.pages.modules.FeaturedBlock;
 import com.opencart.pages.modules.Header;
 import org.openqa.selenium.WebDriver;
 
 public class HomePage {
     protected WebDriver driver;
-    protected Header header;
+    private Header header;
+    private FeaturedBlock featuredBlock;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
-        this.header = new Header(driver);
+        this.header = new Header(this.driver);
+        this.featuredBlock = new FeaturedBlock(this.driver);
     }
 
-        public static HomePage load(WebDriver driver) {
+    public static HomePage load(WebDriver driver) {
         driver.get("http://opencartt.rf.gd/");
         return new HomePage(driver);
     }
 
-    //TODO write business logic
+    public Header getHeader() {
+        return header;
+    }
+
+    public FeaturedBlock getFeaturedBlock() {
+        return featuredBlock;
+    }
+
+    //TODO write business logic with Currency enum given as a parameter
     public HomePage selectCurrency(String currency) {
         header.clickCurrency();
         return new HomePage(driver);
     }
 
     //TODO - must return new search page
-    public void searchByKeyword(String keyword) {
+    public SearchPage searchByKeyword(String keyword) {
         header.clearSearchField();
         header.sendTextToSearchField(keyword);
         header.clickSearchButton();
+        return new SearchPage(driver);
     }
+
+
+    /* TODO implement next methods:
+    clickLogo()
+    register()
+    login()
+    moveToWishList()
+    moveToShoppingCart()
+    checkout()
+    checkShoppingCart()
+    selectProductsCategory()
+     */
 
 }

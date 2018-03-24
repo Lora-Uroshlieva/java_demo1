@@ -1,0 +1,72 @@
+package com.opencart.pages;
+
+import com.opencart.data.Categories;
+import com.opencart.data.ProductsLimitOnPage;
+import com.opencart.data.SortingType;
+import com.opencart.pages.modules.ExtendedSearchBlock;
+import com.opencart.pages.modules.Header;
+import com.opencart.pages.modules.SearchResultsBlock;
+import com.opencart.pages.utils.ConciseAPI;
+import org.openqa.selenium.WebDriver;
+
+public class SearchPage extends ConciseAPI {
+    private Header header;
+    private ExtendedSearchBlock extendedSearchBlock;
+    private SearchResultsBlock searchResultsBlock;
+    private final String LIST_LAYOUT_CLASS = "product-list";
+    private final String GRID_LAYOUT_CLASS = "product-grid";
+
+    public SearchPage(WebDriver driver) {
+        super(driver);
+        this.header = new Header(this.driver);
+        this.extendedSearchBlock = new ExtendedSearchBlock(this.driver);
+        this.searchResultsBlock = new SearchResultsBlock(this.driver);
+    }
+
+    public SearchPage makeExtendedSearch(String keyWord, Categories category) {
+        extendedSearchBlock.clearSearchField();
+        extendedSearchBlock.inputToSearchField(keyWord);
+        extendedSearchBlock.selectCategory(category);
+        extendedSearchBlock.clickSelectInDescriptionsCheckbox();
+        extendedSearchBlock.clickSearchButton();
+        return new SearchPage(driver);
+    }
+
+    public void displayProductsAsList() {
+        searchResultsBlock.clickListViewButton();
+    }
+
+    public void displayProductsAsGrid() {
+        searchResultsBlock.clickGridViewButton();
+    }
+
+    public SearchPage sortProducts(SortingType type) {
+        searchResultsBlock.selectSortingType(type);
+        return new SearchPage(driver);
+    }
+
+    public  SearchPage changeProductsLimitOnPage(ProductsLimitOnPage limit) {
+        searchResultsBlock.selectQuantityOnPage(limit);
+        return new SearchPage(driver);
+    }
+
+    public int countProductsFound() {
+        return searchResultsBlock.getProductComponents().size();
+    }
+
+    public boolean isPricesSortedByAsc() {
+        return isArraySortedByAsc(searchResultsBlock.getAllProductsPricesAmounts());
+    }
+
+    public boolean isPricesSortedByDesc() {
+        return isArraySortedByDesc(searchResultsBlock.getAllProductsPricesAmounts());
+    }
+
+    public boolean isProductsDisplayedByList() {
+        return searchResultsBlock.checkClassPresenceInProductComponent(LIST_LAYOUT_CLASS);
+    }
+
+    public boolean isProductsDisplayedByGrid() {
+        return searchResultsBlock.checkClassPresenceInProductComponent(GRID_LAYOUT_CLASS);
+    }
+}

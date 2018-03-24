@@ -14,7 +14,7 @@ public class ConciseAPI {
 
     public ConciseAPI(WebDriver driver) {
         this.driver = driver;
-        this.myWait = new WebDriverWait(this.driver, 5);
+        this.myWait = new WebDriverWait(this.driver, 10);
     }
 
     public WebElement waitElementVisibleByCss(String cssSelector) {
@@ -44,5 +44,27 @@ public class ConciseAPI {
 
     public boolean isTextEqual(String text1, String text2) {
         return text1.toLowerCase().trim().equals(text2.toLowerCase().trim());
+    }
+
+    public boolean isArraySortedByAsc(List<Double> array) {
+        boolean result = true;
+        for (int i = 0; i < array.size()-1; i++) {
+            if (array.get(i) > array.get(i+1)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public boolean isArraySortedByDesc(List<Double> array) {
+        boolean result = true;
+        for (int i = 0; i < array.size()-1; i++) {
+            if (array.get(i) < array.get(i+1)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 }
