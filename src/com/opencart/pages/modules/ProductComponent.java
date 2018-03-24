@@ -3,8 +3,7 @@ package com.opencart.pages.modules;
 import com.opencart.pages.utils.ConciseAPI;
 import com.opencart.pages.utils.RegexUtils;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebElement;;
 
 public class ProductComponent extends ConciseAPI {
     private WebElement productLayout;
