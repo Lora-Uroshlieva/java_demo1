@@ -13,6 +13,7 @@ public class ProductComponent extends ConciseAPI {
     private final String ADD_TO_CART_BY_CSS = ".fa.fa-shopping-cart";
     private final String ADD_TO_WISH_BY_CSS = ".fa.fa-heart";
     private final String COMPARE_BY_CSS = ".fa.fa-exchange";
+    private final String CLASS_ATTRIBUTE = "class";
 
     public ProductComponent(WebDriver driver, WebElement productLayout) {
         super(driver);
@@ -82,6 +83,6 @@ public class ProductComponent extends ConciseAPI {
     }
 
     public String getElementClasses() {
-        return productLayout.getAttribute("class");
+        return productLayout.getAttribute(CLASS_ATTRIBUTE);
     }
 }

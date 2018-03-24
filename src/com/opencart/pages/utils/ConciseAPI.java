@@ -22,6 +22,11 @@ public class ConciseAPI {
                 .visibilityOfElementLocated(By.cssSelector(cssSelector)));
     }
 
+    public WebElement waitElementVisibleById(String idSelector) {
+        return myWait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.id(idSelector)));
+    }
+
     public List<WebElement> waitAllElementsVisibleByCss(String cssSelector) {
         return myWait.until(ExpectedConditions
                 .visibilityOfAllElementsLocatedBy(By.cssSelector(cssSelector)));
