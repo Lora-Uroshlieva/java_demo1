@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FeaturedBlock extends ConciseAPI {
     protected WebDriver driver;
-    protected List<ProductComponent> productComponents;
+    private List<ProductComponent> productComponents;
     private final String PRODUCT_LAYOUT_BY_CSS = ".product-layout";
 
     public FeaturedBlock(WebDriver driver) {
@@ -17,7 +17,7 @@ public class FeaturedBlock extends ConciseAPI {
         initProductComponents();
     }
 
-    public void initProductComponents() {
+    private void initProductComponents() {
         productComponents = new ArrayList<ProductComponent>();
         for (WebElement currentElement: waitAllElementsVisibleByCss(PRODUCT_LAYOUT_BY_CSS)) {
             productComponents.add(new ProductComponent(driver, currentElement));
@@ -27,5 +27,59 @@ public class FeaturedBlock extends ConciseAPI {
     public List<ProductComponent> getProductComponents() {
         initProductComponents();
         return productComponents;
+    }
+
+    public ProductComponent getProductComponentByName(String productName) {
+        ProductComponent result = null;
+        for (ProductComponent current: getProductComponents()) {
+            if(isTextEqual(current.getNameText(), productName)) {
+                result = current;
+                break;
+            }
+        }
+        if (result == null) {
+            throw new RuntimeException("Product " + productName + " was not found on page.");
+        }
+        return result;
+    }
+
+    public List<String> getAllProductComponentsNames() {
+        List<String> result = new ArrayList<String>();
+        for (ProductComponent current: getProductComponents()) {
+            result.add(current.getNameText());
+        }
+        return result;
+    }
+
+    public Double getPriceAmountByProductName(String productName) {
+        return getProductComponentByName(productName).getPriceAmount();
+    }
+
+    public void clickAddToCartByProductName(String productName) {
+        getProductComponentByName(productName).clickAddToCart();
+    }
+
+    public void clickAddToWishByProductName(String productName) {
+        getProductComponentByName(productName).clickAddToWish();
+    }
+
+    public void clickCompareByProductName(String productName) {
+        getProductComponentByName(productName).clickCompare();
+    }
+
+    /**
+     * Method for checking if classname given as a parameter is present in element's classes list.
+     * @param className - string class name
+     * @return true or false
+     */
+    public boolean checkClassPresenceInProductComponent(String className) {
+        boolean result = true;
+        for (ProductComponent current: getProductComponents()) {
+            if (!current.getElementClasses().contains(className)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 }

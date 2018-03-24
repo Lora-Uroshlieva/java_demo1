@@ -36,4 +36,8 @@ public class ConciseAPI {
         return myWait.until(ExpectedConditions.visibilityOf(layoutElement
                 .findElement(By.cssSelector(cssSelector))));
     }
+
+    public boolean isTextEqual(String text1, String text2) {
+        return text1.toLowerCase().trim().equals(text2.toLowerCase().trim());
+    }
 }
