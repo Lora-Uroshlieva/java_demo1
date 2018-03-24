@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductComponent extends ConciseAPI {
     private WebElement productLayout;
-    private WebDriverWait myWait;
     private final String NAME_BY_CSS = "h4 a";
     private final String DESCRIPTION_BY_CSS = ".caption > p:nth-child(2)";
     private final String PRICE_BY_CSS = ".caption .price";
@@ -56,7 +55,7 @@ public class ProductComponent extends ConciseAPI {
     }
 
     public String getDescriptionText() {
-        return findElementInLayoutByCss(productLayout, DESCRIPTION_BY_CSS).getText();
+        return getDescription().getText();
     }
 
     public WebElement getAddToCart() {
