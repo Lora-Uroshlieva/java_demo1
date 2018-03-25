@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestAll" verbose="4">
+
+    <test name="Opencart">
+        <classes>
+            <class name="opencart.TestSearchPage" />
+        </classes>
+    </test>
+</suite>
