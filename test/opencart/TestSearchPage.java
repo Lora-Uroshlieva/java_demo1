@@ -1,6 +1,7 @@
 package opencart;
 
 import com.opencart.data.Categories;
+import com.opencart.data.ProductsLimitOnPage;
 import com.opencart.data.SortingType;
 import com.opencart.pages.HomePage;
 import com.opencart.pages.SearchPage;
@@ -29,6 +30,7 @@ public class TestSearchPage extends BaseTest {
         searchPage.makeExtendedSearch("i", Categories.DESCTOPS);
         int actual = searchPage.countProductsFound();
         Assert.assertEquals(actual, 11);
+        Assert.assertTrue(searchPage.isTitleContainKeyword("i"));
     }
 
     @Test
@@ -49,7 +51,7 @@ public class TestSearchPage extends BaseTest {
     }
 
     @Test
-    public void testSortingByPriceAsc() throws InterruptedException {
+    public void sortingByPriceAscTest() throws InterruptedException {
         SearchPage searchPage = SearchPage.load(driver)
                 .makeExtendedSearch("mac", Categories.ALL);
         searchPage.sortProducts(SortingType.PRICE_ASC);
@@ -58,7 +60,7 @@ public class TestSearchPage extends BaseTest {
     }
 
     @Test
-    public void testSortingByPriceDesc() {
+    public void sortingByPriceDescTest() {
         SearchPage searchPage = SearchPage.load(driver)
                 .makeExtendedSearch("mac", Categories.ALL);
         searchPage.sortProducts(SortingType.PRICE_DESC);
@@ -66,7 +68,7 @@ public class TestSearchPage extends BaseTest {
     }
 
     @Test
-    public void testSwitchingToListView() {
+    public void switchingToListViewTest() {
         SearchPage searchPage = SearchPage.load(driver)
                 .makeExtendedSearch("mac", Categories.ALL);
         searchPage.displayProductsAsList();
@@ -74,10 +76,33 @@ public class TestSearchPage extends BaseTest {
     }
 
     @Test
-    public void testSwitchingToGridView() {
+    public void switchingToGridViewTest() {
         SearchPage searchPage = SearchPage.load(driver)
                 .makeExtendedSearch("mac", Categories.ALL);
         searchPage.displayProductsAsGrid();
         Assert.assertTrue(searchPage.isProductsDisplayedByGrid());
     }
+
+    @Test
+    public void changeProductsLimitOnPageTest() {
+        SearchPage searchPage = SearchPage.load(driver)
+                .makeExtendedSearch("i", Categories.ALL);
+        Assert.assertEquals(searchPage.countProductsFound(), ProductsLimitOnPage.DEFAULT_LIMIT_15.toInt());
+        searchPage.changeProductsLimitOnPage(ProductsLimitOnPage.LIMIT_25);
+        Assert.assertEquals(searchPage.countProductsFound(), ProductsLimitOnPage.LIMIT_25.toInt());
+    }
+
+    @Test
+    public void goToNextSearchResultsPageTest() {
+        SearchPage searchPage = SearchPage.load(driver)
+                .makeExtendedSearch("i", Categories.ALL)
+                .moveToNextSearchResultsPage();
+        Assert.assertEquals(searchPage.countProductsFound(), ProductsLimitOnPage.DEFAULT_LIMIT_15.toInt());
+        String expectedPageNumberDescription = String.format("Showing %d to %d of %d (%d Pages)", 16, 30, 32, 3);
+        Assert.assertEquals(searchPage.getSearchResultsBlock().getPageNumberDescriptionText(), expectedPageNumberDescription);
+    }
+
+
+
+
 }

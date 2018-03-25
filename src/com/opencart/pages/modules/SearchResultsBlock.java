@@ -7,6 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SearchResultsBlock extends FeaturedBlock {
     public SearchResultsBlock(WebDriver driver) {
         super(driver);
@@ -17,7 +20,8 @@ public class SearchResultsBlock extends FeaturedBlock {
     private final String GRID_VIEW_BUTTON_BY_ID = "grid-view";
     private final String SORTING_TYPE_BY_ID = "input-sort";
     private final String QUANTITY_ON_PAGE_BY_ID = "input-limit";
-
+    private final String NEXT_RESULT_PAGE_BY_XPATH = "//ul[@class='pagination'] /li /a[text()='>']";
+    private final String PAGE_NUMBER_DESCRIPTION_BY_CSS = "div.text-right";
 
     public WebElement getProductCompareLink() {
         return waitElementVisibleById(PRODUCT_COMPARE_LINK_BY_ID);
@@ -47,5 +51,13 @@ public class SearchResultsBlock extends FeaturedBlock {
     public void selectQuantityOnPage(ProductsLimitOnPage quantity) {
         Select dropdown = new Select(waitElementVisibleById(QUANTITY_ON_PAGE_BY_ID));
         dropdown.selectByVisibleText(quantity.toString());
+    }
+
+    public void clickNextSearchResultsPage() {
+        waitElementVisibleByXpath(NEXT_RESULT_PAGE_BY_XPATH).click();
+    }
+
+    public String getPageNumberDescriptionText() {
+        return waitElementVisibleByCss(PAGE_NUMBER_DESCRIPTION_BY_CSS).getText();
     }
 }

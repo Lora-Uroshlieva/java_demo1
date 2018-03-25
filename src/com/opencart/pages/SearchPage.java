@@ -65,6 +65,11 @@ public class SearchPage extends ConciseAPI {
         return new SearchPage(driver);
     }
 
+    public SearchPage moveToNextSearchResultsPage() {
+        searchResultsBlock.clickNextSearchResultsPage();
+        return new SearchPage(driver);
+    }
+
     public int countProductsFound() {
         return searchResultsBlock.getProductComponents().size();
     }
@@ -72,8 +77,6 @@ public class SearchPage extends ConciseAPI {
     public boolean isKeywordInProductsNames(String keyword) {
         boolean result = true;
         for(String currentName: getSearchResultsBlock().getAllProductComponentsNames()) {
-            System.out.println("************** products found"
-                    + getSearchResultsBlock().getAllProductComponentsNames());
             if(!currentName.contains(keyword)) {
                 result = false;
             }
@@ -95,5 +98,9 @@ public class SearchPage extends ConciseAPI {
 
     public boolean isProductsDisplayedByGrid() {
         return searchResultsBlock.checkClassPresenceInProductComponent(GRID_LAYOUT_CLASS);
+    }
+
+    public boolean isTitleContainKeyword(String keyword) {
+        return driver.getTitle().contains(keyword);
     }
 }

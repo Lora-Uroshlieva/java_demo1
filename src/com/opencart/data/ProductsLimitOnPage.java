@@ -1,7 +1,7 @@
 package com.opencart.data;
 
 public enum  ProductsLimitOnPage {
-    LIMIT_15("15"),
+    DEFAULT_LIMIT_15("15"),
     LIMIT_25("25"),
     LIMIT_50("50"),
     LIMIT_75("75"),
@@ -17,5 +17,9 @@ public enum  ProductsLimitOnPage {
     @Override
     public String toString() {
         return name;
+    }
+
+    public int toInt() {
+        return Integer.parseInt(this.toString());
     }
 }

@@ -1,5 +1,7 @@
 package com.opencart.pages.utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,11 +59,12 @@ public final class RegexUtils {
         return result;
     }
 
-    public static String extractPathWithoutServer(String pattern, String text) {
-        String result = text;
-        Matcher matcher = Pattern.compile(pattern).matcher(text);
-        if (matcher.find()) {
-            result = text.substring(matcher.end() - 1);
+    public static List<Integer> extractAllNumbers(String text) {
+        List<Integer> result = new ArrayList<>();
+        Pattern pattern = Pattern.compile(PATTERN_UNSIGNED_NUMBER);
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            result.add(Integer.parseInt(matcher.group()));
         }
         return result;
     }
