@@ -5,8 +5,12 @@ import com.opencart.data.ProductsLimitOnPage;
 import com.opencart.data.SortingType;
 import com.opencart.pages.HomePage;
 import com.opencart.pages.SearchPage;
+import opencart.helpers.Listener;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
+@Listeners(Listener.class)
 
 public class TestSearchPage extends BaseTest {
 

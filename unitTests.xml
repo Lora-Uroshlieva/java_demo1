@@ -2,12 +2,12 @@
 
 <suite name="TestAll" verbose="4">
 
-    <test name="Regression">
-        <classes>
-            <class name="unittests.DivisorsFinderTest" />
-            <class name="unittests.NumberCheckerTest" />
-            <class name="unittests.SpecificNumbersFinderTest" />
-        </classes>
-    </test>
+<test name="Regression">
+    <classes>
+        <class name="unittests.DivisorsFinderTest" />
+        <class name="unittests.NumberCheckerTest" />
+        <class name="unittests.SpecificNumbersFinderTest" />
+    </classes>
+</test>
 
 </suite>

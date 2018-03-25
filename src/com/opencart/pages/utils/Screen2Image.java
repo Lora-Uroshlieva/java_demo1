@@ -4,19 +4,25 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Screen2Image {
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss");
 
-    public void makeScreenshot(String partialName) throws Exception
-    {
+    public void makeScreenshot() throws IOException {
         Calendar now = Calendar.getInstance();
-        Robot robot = new Robot();
+        Robot robot = null;
+        try {
+            robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
         BufferedImage screenShot = robot.createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
-        ImageIO.write(screenShot, "JPG", new File("C:\\Users\\ПК\\IdeaProjects\\java_demo1\\screenshots\\"+formatter.format(now.getTime())+ partialName + ".jpg"));
+        String projectPath = Paths.get(".").toAbsolutePath().normalize().toString();
+        ImageIO.write(screenShot, "JPG", new File(projectPath + "\\screenshots\\"+formatter.format(now.getTime()) + ".jpg"));
         System.out.println(formatter.format(now.getTime()) + " - screen of error was captured.");
     }
 }
-
