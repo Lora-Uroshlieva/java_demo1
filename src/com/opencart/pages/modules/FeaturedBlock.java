@@ -1,6 +1,7 @@
 package com.opencart.pages.modules;
 
 import com.opencart.pages.utils.ConciseAPI;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -13,7 +14,6 @@ public class FeaturedBlock extends ConciseAPI {
 
     public FeaturedBlock(WebDriver driver) {
         super(driver);
-        initProductComponents();
     }
 
     private void initProductComponents() {
@@ -26,6 +26,10 @@ public class FeaturedBlock extends ConciseAPI {
     public List<ProductComponent> getProductComponents() {
         initProductComponents();
         return productComponents;
+    }
+
+    public boolean isProductFound() {
+        return driver.findElements(By.cssSelector(PRODUCT_LAYOUT_BY_CSS)).size() >= 1;
     }
 
     public ProductComponent getProductComponentByName(String productName) {
@@ -60,6 +64,8 @@ public class FeaturedBlock extends ConciseAPI {
         for (ProductComponent current: products) {
             prices.add(current.getPriceAmount());
         }
+        System.out.println("Prices of products present on page: ");
+        System.out.println(prices);
         return prices;
     }
 

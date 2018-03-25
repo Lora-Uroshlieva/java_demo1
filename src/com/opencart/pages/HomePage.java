@@ -28,6 +28,10 @@ public class HomePage {
         return featuredBlock;
     }
 
+    public void moveToSearchPage() {
+        getHeader().clickSearchButton();
+    }
+
     //TODO write business logic with Currency enum given as a parameter
     public HomePage selectCurrency(String currency) {
         header.clickCurrency();

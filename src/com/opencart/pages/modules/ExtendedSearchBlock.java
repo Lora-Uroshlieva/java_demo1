@@ -1,6 +1,7 @@
 package com.opencart.pages.modules;
 
 import com.opencart.data.Categories;
+import com.opencart.pages.SearchPage;
 import com.opencart.pages.utils.ConciseAPI;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,24 +21,29 @@ public class ExtendedSearchBlock extends ConciseAPI {
         return waitElementVisibleById(SEARCH_FIELD_BY_ID);
     }
 
-    public void clearSearchField() {
+    public ExtendedSearchBlock clearSearchField() {
         getSearchField().clear();
+        return this;
     }
 
-    public void inputToSearchField(String text) {
+    public ExtendedSearchBlock inputToSearchField(String text) {
         getSearchField().sendKeys(text);
+        return this;
     }
 
-    public void selectCategory(Categories category) {
+    public ExtendedSearchBlock selectCategory(Categories category) {
         Select dropdown = new Select(waitElementVisibleByCss(CATEGORY_BY_CSS));
         dropdown.selectByVisibleText(category.toString()); //category is chosen as visible text in html code
+        return this;
     }
 
-    public void clickSelectInDescriptionsCheckbox() {
+    public ExtendedSearchBlock clickSelectInDescriptionsCheckbox() {
         waitElementVisibleById(SELECT_IN_DESCRIPTIONS_CHECKBOX_BY_ID).click();
+        return this;
     }
 
-    public void clickSearchButton() {
+    public SearchPage clickSearchButton() {
         waitElementVisibleById(SEARCH_BUTTON_BY_ID).click();
+        return new SearchPage(driver);
     }
 }

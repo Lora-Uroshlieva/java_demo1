@@ -6,10 +6,13 @@ import java.util.regex.Pattern;
 public final class RegexUtils {
 
     private final static String PATTERN_UNSIGNED_NUMBER = "\\d+";
-    private final static String PATTERN_UNSIGNED_DOUBLE = "\\d+\\.\\d+";
+    private final static String PATTERN_UNSIGNED_DOUBLE = "(\\d)+[, ]*\\d*\\.\\d+";
     private final static String EXTRACT_NUMBER_MESSAGE = "NumberFormatException for pattern =  %s text =  %s";
 
     private RegexUtils() {
+    }
+    public static String replaceCommaInString(String text) {
+        return text.replace(",", "");
     }
 
     public static String extractFirstString(String pattern, String text) {
@@ -41,6 +44,9 @@ public final class RegexUtils {
         String extractText = extractFirstString(PATTERN_UNSIGNED_DOUBLE, text);
         if (!extractText.isEmpty()) {
             try {
+                if (extractText.contains(",")) {
+                    extractText = RegexUtils.replaceCommaInString(extractText);
+                }
                 result = Double.parseDouble(extractText);
 
             } catch (NumberFormatException e) {

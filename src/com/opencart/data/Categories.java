@@ -2,7 +2,7 @@ package com.opencart.data;
 
 public enum Categories {
     ALL("All Categories"),
-    Desktops("Desktops"),
+    DESCTOPS("Desktops"),
     LAPTOPS("Laptops & Notebooks"),
     PHONES("Phones & PDAs"),
     CAMERAS("Cameras");

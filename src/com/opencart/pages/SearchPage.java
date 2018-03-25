@@ -10,11 +10,27 @@ import com.opencart.pages.utils.ConciseAPI;
 import org.openqa.selenium.WebDriver;
 
 public class SearchPage extends ConciseAPI {
+
     private Header header;
     private ExtendedSearchBlock extendedSearchBlock;
-    private SearchResultsBlock searchResultsBlock;
+    protected SearchResultsBlock searchResultsBlock;
+
+    public SearchResultsBlock getSearchResultsBlock() {
+        return searchResultsBlock;
+    }
+
+    public static String getURL() {
+        return URL;
+    }
+
+    private final static String URL = "http://opencartt.rf.gd/index.php?route=product/search";
     private final String LIST_LAYOUT_CLASS = "product-list";
     private final String GRID_LAYOUT_CLASS = "product-grid";
+
+    public static SearchPage load(WebDriver driver) {
+        driver.get(URL);
+        return new SearchPage(driver);
+    }
 
     public SearchPage(WebDriver driver) {
         super(driver);
@@ -24,12 +40,11 @@ public class SearchPage extends ConciseAPI {
     }
 
     public SearchPage makeExtendedSearch(String keyWord, Categories category) {
-        extendedSearchBlock.clearSearchField();
-        extendedSearchBlock.inputToSearchField(keyWord);
-        extendedSearchBlock.selectCategory(category);
-        extendedSearchBlock.clickSelectInDescriptionsCheckbox();
-        extendedSearchBlock.clickSearchButton();
-        return new SearchPage(driver);
+        return extendedSearchBlock.clearSearchField()
+                .inputToSearchField(keyWord)
+                .selectCategory(category)
+                .clickSelectInDescriptionsCheckbox()
+                .clickSearchButton();
     }
 
     public void displayProductsAsList() {
@@ -52,6 +67,18 @@ public class SearchPage extends ConciseAPI {
 
     public int countProductsFound() {
         return searchResultsBlock.getProductComponents().size();
+    }
+
+    public boolean isKeywordInProductsNames(String keyword) {
+        boolean result = true;
+        for(String currentName: getSearchResultsBlock().getAllProductComponentsNames()) {
+            System.out.println("************** products found"
+                    + getSearchResultsBlock().getAllProductComponentsNames());
+            if(!currentName.contains(keyword)) {
+                result = false;
+            }
+        }
+        return result;
     }
 
     public boolean isPricesSortedByAsc() {
